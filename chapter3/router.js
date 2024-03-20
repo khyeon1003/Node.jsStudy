@@ -4,10 +4,8 @@ http.createServer((req,res)=>{
   const path =url.parse(req.url, true).pathname;//패스명 할당(파싱으로 할당하는듯)
   res.setHeader("Content-Type","text/html");
 
-  if (path ==="/user"){
-    user(req,res);//user 응답 설정
-  } else if(path==="/feed"){
-    feed(req,res);
+  if (path in urlMap){//urlMap에 path가 있는지 확인
+    urlMap[path](req,res);//urlM
   }else{
     notFound(req,res)
   }
@@ -35,3 +33,8 @@ const notFound=(req,res)=>{
   res.statusCode=404; //에러부분 설정
   res.end("404 page not found")
 }
+const urlMap= {
+  "/":(req,res)=>{res.end("HOME")},
+  "/user":user,
+  "/feed":feed
+};
