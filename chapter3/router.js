@@ -5,7 +5,7 @@ http.createServer((req,res)=>{
   res.setHeader("Content-Type","text/html");
 
   if (path in urlMap){//urlMap에 path가 있는지 확인
-    urlMap[path](req,res);//urlM
+    urlMap[path](req,res);
   }else{
     notFound(req,res)
   }
