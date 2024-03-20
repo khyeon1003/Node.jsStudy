@@ -15,7 +15,10 @@ http.createServer((req,res)=>{
 
 //함수 나누기
 const user=(req,res)=>{
-  res.end("[user] name:andy,age:30")
+  const userInfo=url.parse(req.url,true).query;
+  //쿼리스트링 데이터를 userInfo에 할당(url의qurey부분을 매개변수로 받음)
+  res.end(`[user] name:${userInfo.name},age=${userInfo.age}`)
+
 }
 
 const feed=(req,res)=>{
